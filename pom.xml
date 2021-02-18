@@ -6,12 +6,7 @@
     <groupId>com.myhome.services</groupId>
     <artifactId>MyHomeServices</artifactId>
     <version>1.0.0</version>
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <version.json>20180813</version.json>
-        <maven.test.skip>true</maven.test.skip>
-    </properties>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -22,30 +17,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework.boot</groupId>-->
-<!--                    <artifactId>spring-boot-starter-logging</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
         </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-           <!--  <version>3.0.1</version> -->
-            <scope>provided</scope>
-        </dependency>
-<!--        <dependency> -->
-<!--		       <groupId>com.google.code.gson</groupId> -->
-<!--		       <artifactId>gson</artifactId> -->
-<!--		       &lt;!&ndash; <version>2.6.2</version> &ndash;&gt; -->
-<!--   		</dependency>-->
-<!--   		&lt;!&ndash; https://mvnrepository.com/artifact/org.json/json &ndash;&gt;-->
-<!--		<dependency>-->
-<!--		    <groupId>org.json</groupId>-->
-<!--		    <artifactId>json</artifactId>-->
-<!--		    <version>${version.json}</version>-->
-<!--		</dependency>-->
    		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -61,17 +33,34 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- For JSP START -->
+        <!-- Tomcat embedded container-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSTL for JSP -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- Need this to compile JSP -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+        <!-- For JSP END -->
         
     	<!-- For sending mail -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-log4j2</artifactId>-->
-<!--        </dependency>-->
 
     </dependencies>
     <build>
