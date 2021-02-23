@@ -3,25 +3,23 @@ package com.myhome.beans;
 import org.springframework.data.annotation.Id;
 
 public class MemberName {
-    public MemberName(String member_name_id, String member_fname, String member_mname, String member_lname) {
-        this.member_name_id = member_name_id;
+    public MemberName(String member_fname, String member_mname, String member_lname) {
         this.member_fname = member_fname;
         this.member_mname = member_mname;
         this.member_lname = member_lname;
     }
 
     @Id String id;
-    String member_name_id;
     String member_fname;
     String member_mname;
     String member_lname;
 
-    public String getMember_name_id() {
-        return member_name_id;
+    public String getId() {
+        return id;
     }
 
-    public void setMember_name_id(String member_name_id) {
-        this.member_name_id = member_name_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMember_fname() {

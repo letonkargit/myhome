@@ -3,8 +3,8 @@ package com.myhome.beans;
 import org.springframework.data.annotation.Id;
 
 public class Items {
-    public Items(String username, String item_type, String item_name, String item_desc, String item_eat_time, String item_exp_date, String item_location, String is_opened) {
-        this.username = username;
+    public Items(String cs_username, String item_type, String item_name, String item_desc, String item_eat_time, String item_exp_date, String item_location, String is_opened) {
+        this.cs_username = cs_username;
         this.item_type = item_type;
         this.item_name = item_name;
         this.item_desc = item_desc;
@@ -15,7 +15,7 @@ public class Items {
     }
 
     @Id String id;
-    String username;
+    String cs_username;
     Integer item_id;
     String item_type;
     String item_name;
@@ -89,11 +89,11 @@ public class Items {
         this.is_opened = is_opened;
     }
 
-    public String getUsername() {
-        return username;
+    public String getCs_username() {
+        return cs_username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCs_username(String cs_username) {
+        this.cs_username = cs_username;
     }
 }

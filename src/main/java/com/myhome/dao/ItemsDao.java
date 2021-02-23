@@ -5,13 +5,14 @@ import com.myhome.common.dao.CommonDao;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import static com.myhome.common.constants.TableConstants.*;
 import static com.myhome.common.constants.ColumnNameConstants.*;
 
-@Component
+@Service
 public class ItemsDao extends CommonDao {
 
     //Fetch queries

@@ -1,6 +1,8 @@
 package com.myhome.controllers;
 
+import com.myhome.beans.Users;
 import com.myhome.services.ItemsService;
+import com.myhome.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class UserController {
     @Autowired ItemsService itemsService;
+    @Autowired UserService userService;
     Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     @RequestMapping(value = "/authuser", method= {RequestMethod.POST, RequestMethod.GET})
@@ -23,8 +26,9 @@ public class UserController {
         String userid = request.getParameter("uname");
         String password = request.getParameter("passwd");
         logger.info("user - {} and password {}", userid, password);
-        if(userid.equals("harshuonkar") && password.equals("harshu123")){
-            model.addAttribute("items", itemsService.fetchAllItems(userid));
+
+        if(userService.authenticate(userid, password)){
+//            model.addAttribute("items", itemsService.fetchAllItems(userid));
             model.addAttribute("user",userid);
             request.getSession().setAttribute("user", userid);
             request.getSession().setAttribute("memberuser", "");
@@ -57,9 +61,12 @@ public class UserController {
     public String registeruser(HttpServletRequest request,
                             HttpServletResponse response, Model model){
         //Get params
+        Users users = userService.registerUser(request);
         //Validate params and insert records
         //Finish registration
         //Set return fields and return
+        request.getSession().setAttribute("user", users.getCs_username());
+        request.getSession().setAttribute("memberuser", "");
         return "userhome";
     }
 }

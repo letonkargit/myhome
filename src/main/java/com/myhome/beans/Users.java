@@ -3,33 +3,33 @@ package com.myhome.beans;
 import org.springframework.data.annotation.Id;
 
 public class Users {
-    public Users(String username, String password, String cs_member_1_id, String cs_member_2_id) {
-        this.username = username;
-        this.password = password;
+    public Users(String cs_username, String cs_password, String cs_member_1_id, String cs_member_2_id) {
+        this.cs_username = cs_username;
+        this.cs_password = cs_password;
         this.cs_member_1_id = cs_member_1_id;
         this.cs_member_2_id = cs_member_2_id;
     }
 
     @Id String id;
-    String username;
-    String password;
+    String cs_username;
+    String cs_password;
     String cs_member_1_id;
     String cs_member_2_id;
 
-    public String getUsername() {
-        return username;
+    public String getCs_username() {
+        return cs_username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setCs_username(String cs_username) {
+        this.cs_username = cs_username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCs_password() {
+        return cs_password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCs_password(String cs_password) {
+        this.cs_password = cs_password;
     }
 
     public String getCs_member_1_id() {
