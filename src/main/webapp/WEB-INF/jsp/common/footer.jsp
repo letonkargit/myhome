@@ -39,7 +39,6 @@
         }
     </script>
 <body>
-</div>
     <div class="container-fluid p-3 my-3 bg-dark text-white" style="bottom: 0;position: fixed;float: bottom;z-index:100;">
             <h3>Footer options</h3>
     </div>

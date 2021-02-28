@@ -4,7 +4,6 @@ import com.myhome.beans.Items;
 import com.myhome.common.dao.CommonDao;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

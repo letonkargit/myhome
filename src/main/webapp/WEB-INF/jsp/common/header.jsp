@@ -24,10 +24,15 @@
                 if("<%=session.getAttribute("memberuser")%>" === ""){
                     showId('whichmemberdiv');
                 } else {
-                    document.getElementById("memberuserdiv").innerHTML = "Hello "+"<%=session.getAttribute("memberuser")%>";
+                    document.getElementById("memberuserdiv").innerHTML = "Hello <br>"+"<%=session.getAttribute("memberuser")%>";
                     hideId('whichmemberdiv');
                 }
             }  
+            
+            function showprofile(){
+                document.basicformforpagenav.action="<%=request.getContextPath()%>/showprofile";
+                document.basicformforpagenav.submit();
+            }
             
             function signout(){
                 document.basicformforpagenav.action="<%=request.getContextPath()%>/signout";
@@ -65,8 +70,11 @@
                 <div class="col-sm-1">
                     <i class='fa fa-user-circle' style='font-size:36px' onclick="takemeuserhome()"></i>
                 </div>
-                <div class="col-sm-8">
-                    <div id="memberuserdiv"></div>
+                <div class="col-sm-1">
+                    <div id="memberuserdiv" style="border: 1px solid white;font-size: 15px;border-radius: 20px;text-align: center;cursor: pointer" onclick="showprofile();"></div>
+                </div>
+                <div class="col-sm-7">
+                    <input type="text" value="Search will go here!">
                 </div>
                 <div class="col-sm-1">
                     <i class='fa fa-sign-out' style='font-size:36px' onclick="signout()"></i>

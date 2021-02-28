@@ -1,6 +1,7 @@
 package com.myhome.controllers;
 
 import com.myhome.beans.Users;
+import com.myhome.beans.packaged.Profiles;
 import com.myhome.services.ItemsService;
 import com.myhome.services.UserService;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -32,7 +34,7 @@ public class UserController {
             model.addAttribute("user",userid);
             request.getSession().setAttribute("user", userid);
             request.getSession().setAttribute("memberuser", "");
-            return "userhome";
+            return "dashboard";
         } else {
             model.addAttribute("invalidcred","true");
             return "index";
@@ -54,7 +56,18 @@ public class UserController {
         if(memberuser != null && !memberuser.isEmpty()){
             request.getSession().setAttribute("memberuser", memberuser);
         }
-        return "userhome";
+        return "dashboard";
+    }
+
+    @RequestMapping(value = "/showprofile", method= {RequestMethod.POST, RequestMethod.GET})
+    public String showprofile(HttpServletRequest request,
+                            HttpServletResponse response, Model model){
+        String userLoggedIn = request.getParameter("user");
+
+        List<Profiles> profiles = userService.fetchMembers(userLoggedIn);
+        model.addAttribute("profiles", profiles);
+
+        return "profile";
     }
 
     @RequestMapping(value = "/registeruser", method= {RequestMethod.POST, RequestMethod.GET})
@@ -67,6 +80,6 @@ public class UserController {
         //Set return fields and return
         request.getSession().setAttribute("user", users.getCs_username());
         request.getSession().setAttribute("memberuser", "");
-        return "userhome";
+        return "dashboard";
     }
 }

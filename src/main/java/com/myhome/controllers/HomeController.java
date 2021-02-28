@@ -1,7 +1,9 @@
 package com.myhome.controllers;
 
 import com.myhome.beans.Items;
+import com.myhome.dao.MenuDao;
 import com.myhome.services.ItemsService;
+import com.myhome.services.MenuService;
 import com.myhome.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class HomeController {
     @Autowired ItemsService itemsService;
     @Autowired UserService userService;
+    @Autowired MenuService menuService;
     Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     @RequestMapping(value= {"/home","/" }, method={ RequestMethod.POST, RequestMethod.GET})
@@ -26,7 +29,7 @@ public class HomeController {
                 request.getSession().getAttribute("user").toString() : null;
         logger.info("user - {}",userLoggedIn);
         if(userService.isValidUser(userLoggedIn)){
-            model.addAttribute("items", itemsService.fetchAllItems(userLoggedIn));
+            model.addAttribute("menus", menuService.fetchBaseMenus());
             return "userhome";
         } else {
             model.addAttribute("loginfirst","true");
@@ -74,6 +77,6 @@ public class HomeController {
 
         model.addAttribute("success", success);
 
-        return "userhome";
+        return "menus/eatableitems";
     }
 }
