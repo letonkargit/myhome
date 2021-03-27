@@ -22,6 +22,27 @@
             document.basicformforpagenav.action="<%=request.getContextPath()%>/"+action;
             document.basicformforpagenav.submit();
         }
+        
+        function uploadImage(id, image){
+            if(document.getElementById(image).value !== ""){
+                var member_id = document.createElement("input");
+                member_id.setAttribute("name","member_id");
+                member_id.setAttribute("type","hidden");
+                member_id.setAttribute("value", id);
+                
+                var imagetype = document.createElement("input");
+                imagetype.setAttribute("name","imagetype");
+                imagetype.setAttribute("type","hidden");
+                imagetype.setAttribute("value", "profilepic");
+
+                document.uploadprofform.appendChild(member_id);
+                document.uploadprofform.appendChild(imagetype);
+                
+                document.uploadprofform.submit();
+            } else {
+                //set error message
+            }
+        }
     </script>
 </head>
 <body>
@@ -33,12 +54,29 @@
         <div class="row">            
             <div class="col">
                 <c:forEach items="${profiles}" var="users">
-                    <div class="card img-profile" style="width:250px">
-                        <img class="card-img-top" src="${users.profilepic}" alt="Please upload image to see it here!">
+                    <div class="card img-profile" style="width:250px;">
+                        <div style="position: relative">
+                            <img class="card-img-top" style="width:250px;height:220px" src="<%=request.getContextPath()%>/image?imagepath=${users.profilepic}" alt="Please upload image to see it here!">
+                            
+                            <c:if test="${not users.imageUnavailable}">
+                                <div style="position: absolute;bottom: 0px;left: 0px;width: 250px">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" id="profimage${users.member_id}" name="profimage${users.member_id}">
+                                        </div>
+                                        <div class="input-group-btn">
+                                            <input type="button" class="btn btn-primary" onclick="uploadImage('${users.member_id}','profimage${users.member_id}')" value="Upload">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="member_id${users.member_id}" name="member_id${users.member_id}" value="${users.member_id}"/>
+                                </div>
+                            </c:if>
+                        </div>
                         <div class="card-body">
                           <h4 class="card-title">${users.fname} ${users.mname} ${users.lname}</h4>
                           <p class="card-text">${users.member_nickname}</p>
                         </div>
+                        
                     </div>
                 </c:forEach>
             </div>

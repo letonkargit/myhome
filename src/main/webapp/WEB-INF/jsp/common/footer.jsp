@@ -33,15 +33,19 @@
             document.getElementById(id).style.display = 'none';
         }
         
+        function setFocus(id){
+            document.getElementById(id).focus();
+        }
+        
         function takemeuserhome(){
             document.basicformforpagenav.action="<%=request.getContextPath()%>/home";
             document.basicformforpagenav.submit();
         }
     </script>
 <body>
-    <div class="container-fluid p-3 my-3 bg-dark text-white" style="bottom: 0;position: fixed;float: bottom;z-index:100;">
+<!--    <div class="container-fluid p-3 my-3 bg-dark text-white" style="bottom: 0;position: fixed;float: bottom;z-index:100;">
             <h3>Footer options</h3>
-    </div>
+    </div>-->
 
     <form name="basicformforpagenav" action="POST">
         <input type="hidden" id="user" name="user" value="<%=session.getAttribute("user")%>"/>

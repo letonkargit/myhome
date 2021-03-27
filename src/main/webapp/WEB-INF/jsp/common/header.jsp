@@ -26,6 +26,11 @@
                 } else {
                     document.getElementById("memberuserdiv").innerHTML = "Hello <br>"+"<%=session.getAttribute("memberuser")%>";
                     hideId('whichmemberdiv');
+                    
+                    //setting restriction for date select
+                    if(document.getElementById("item_exp") !== null){
+                        document.getElementById("item_exp").min = new Date().toISOString().split("T")[0];
+                    }
                 }
             }  
             
